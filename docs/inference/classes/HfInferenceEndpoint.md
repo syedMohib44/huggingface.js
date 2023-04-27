@@ -1,43 +1,34 @@
-# Class: HfInference
+# Class: HfInferenceEndpoint
 
 ## Hierarchy
 
-- `TaskWithNoAccessToken`
+- `TaskWithNoAccessTokenNoModel`
 
-  ↳ **`HfInference`**
+  ↳ **`HfInferenceEndpoint`**
 
 ## Constructors
 
 ### constructor
 
-• **new HfInference**(`accessToken?`, `defaultOptions?`)
+• **new HfInferenceEndpoint**(`endpointUrl`, `accessToken?`, `defaultOptions?`)
 
 #### Parameters
 
 | Name | Type | Default value |
 | :------ | :------ | :------ |
+| `endpointUrl` | `string` | `undefined` |
 | `accessToken` | `string` | `""` |
 | `defaultOptions` | [`Options`](../interfaces/Options) | `{}` |
 
 #### Defined in
 
-[inference/src/HfInference.ts:25](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/HfInference.ts#L25)
+[inference/src/HfInference.ts:48](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/HfInference.ts#L48)
 
 ## Properties
 
-### accessToken
-
-• `Private` `Readonly` **accessToken**: `string`
-
-#### Defined in
-
-[inference/src/HfInference.ts:22](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/HfInference.ts#L22)
-
-___
-
 ### audioClassification
 
-• **audioClassification**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`AudioClassificationReturn`](../modules#audioclassificationreturn)\>
+• **audioClassification**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`AudioClassificationReturn`](../modules#audioclassificationreturn)\>
 
 #### Type declaration
 
@@ -49,7 +40,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary audio data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -64,7 +54,7 @@ ___
 
 ### automaticSpeechRecognition
 
-• **automaticSpeechRecognition**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`AutomaticSpeechRecognitionOutput`](../interfaces/AutomaticSpeechRecognitionOutput)\>
+• **automaticSpeechRecognition**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`AutomaticSpeechRecognitionOutput`](../interfaces/AutomaticSpeechRecognitionOutput)\>
 
 #### Type declaration
 
@@ -76,7 +66,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary audio data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -91,7 +80,7 @@ ___
 
 ### conversational
 
-• **conversational**: (`args`: { `inputs`: { `generated_responses?`: `string`[] ; `past_user_inputs?`: `string`[] ; `text`: `string`  } ; `model`: `string` ; `parameters?`: { `max_length?`: `number` ; `max_time?`: `number` ; `min_length?`: `number` ; `repetition_penalty?`: `number` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ConversationalOutput`](../interfaces/ConversationalOutput)\>
+• **conversational**: (`args`: { `inputs`: { `generated_responses?`: `string`[] ; `past_user_inputs?`: `string`[] ; `text`: `string`  } ; `parameters?`: { `max_length?`: `number` ; `max_time?`: `number` ; `min_length?`: `number` ; `repetition_penalty?`: `number` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ConversationalOutput`](../interfaces/ConversationalOutput)\>
 
 #### Type declaration
 
@@ -106,7 +95,6 @@ ___
 | `args.inputs.generated_responses?` | `string`[] | A list of strings corresponding to the earlier replies from the model. |
 | `args.inputs.past_user_inputs?` | `string`[] | A list of strings corresponding to the earlier replies from the user. Should be of the same length of generated_responses. |
 | `args.inputs.text` | `string` | The last input from the user in the conversation. |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.max_length?` | `number` | (Default: None). Integer to define the maximum length in tokens of the output summary. |
 | `args.parameters.max_time?` | `number` | (Default: None). Float (0-120.0). The amount of time in seconds that the query should take maximum. Network can cause some overhead so it will be a soft limit. |
@@ -127,19 +115,9 @@ ___
 
 ___
 
-### defaultOptions
-
-• `Private` `Readonly` **defaultOptions**: [`Options`](../interfaces/Options)
-
-#### Defined in
-
-[inference/src/HfInference.ts:23](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/HfInference.ts#L23)
-
-___
-
 ### documentQuestionAnswering
 
-• **documentQuestionAnswering**: (`args`: { `inputs`: { `image`: `Blob` ; `question`: `string`  } ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`DocumentQuestionAnsweringOutput`](../interfaces/DocumentQuestionAnsweringOutput)\>
+• **documentQuestionAnswering**: (`args`: { `inputs`: { `image`: `Blob` ; `question`: `string`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`DocumentQuestionAnsweringOutput`](../interfaces/DocumentQuestionAnsweringOutput)\>
 
 #### Type declaration
 
@@ -153,7 +131,6 @@ ___
 | `args.inputs` | `Object` | - |
 | `args.inputs.image` | `Blob` | Raw image You can use native `File` in browsers, or `new Blob([buffer])` in node, or for a base64 image `new Blob([btoa(base64String)])`, or even `await (await fetch('...)).blob()` |
 | `args.inputs.question` | `string` | - |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -168,7 +145,7 @@ ___
 
 ### featureExtraction
 
-• **featureExtraction**: (`args`: { `inputs`: `string` \| `string`[] ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`FeatureExtractionOutput`](../modules#featureextractionoutput)\>
+• **featureExtraction**: (`args`: { `inputs`: `string` \| `string`[]  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`FeatureExtractionOutput`](../modules#featureextractionoutput)\>
 
 #### Type declaration
 
@@ -180,7 +157,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` \| `string`[] | The inputs is a string or a list of strings to get the features from. inputs: "That is a happy person", |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -195,7 +171,7 @@ ___
 
 ### fillMask
 
-• **fillMask**: (`args`: { `inputs`: `string` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`FillMaskOutput`](../modules#fillmaskoutput)\>
+• **fillMask**: (`args`: { `inputs`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`FillMaskOutput`](../modules#fillmaskoutput)\>
 
 #### Type declaration
 
@@ -203,12 +179,11 @@ ___
 
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `args` | `Object` | - |
-| `args.inputs` | `string` | - |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
-| `options?` | [`Options`](../interfaces/Options) | - |
+| Name | Type |
+| :------ | :------ |
+| `args` | `Object` |
+| `args.inputs` | `string` |
+| `options?` | [`Options`](../interfaces/Options) |
 
 ##### Returns
 
@@ -222,7 +197,7 @@ ___
 
 ### imageClassification
 
-• **imageClassification**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageClassificationOutput`](../modules#imageclassificationoutput)\>
+• **imageClassification**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageClassificationOutput`](../modules#imageclassificationoutput)\>
 
 #### Type declaration
 
@@ -234,7 +209,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary image data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -249,7 +223,7 @@ ___
 
 ### imageSegmentation
 
-• **imageSegmentation**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageSegmentationOutput`](../modules#imagesegmentationoutput)\>
+• **imageSegmentation**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageSegmentationOutput`](../modules#imagesegmentationoutput)\>
 
 #### Type declaration
 
@@ -261,7 +235,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary image data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -276,7 +249,7 @@ ___
 
 ### imageToText
 
-• **imageToText**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageToTextOutput`](../interfaces/ImageToTextOutput)\>
+• **imageToText**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ImageToTextOutput`](../interfaces/ImageToTextOutput)\>
 
 #### Type declaration
 
@@ -288,7 +261,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary image data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -303,7 +275,7 @@ ___
 
 ### objectDetection
 
-• **objectDetection**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ObjectDetectionOutput`](../modules#objectdetectionoutput)\>
+• **objectDetection**: (`args`: { `data`: `Blob` \| `ArrayBuffer`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ObjectDetectionOutput`](../modules#objectdetectionoutput)\>
 
 #### Type declaration
 
@@ -315,7 +287,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.data` | `Blob` \| `ArrayBuffer` | Binary image data |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -330,7 +301,7 @@ ___
 
 ### questionAnswering
 
-• **questionAnswering**: (`args`: { `inputs`: { `context`: `string` ; `question`: `string`  } ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`QuestionAnsweringOutput`](../interfaces/QuestionAnsweringOutput)\>
+• **questionAnswering**: (`args`: { `inputs`: { `context`: `string` ; `question`: `string`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`QuestionAnsweringOutput`](../interfaces/QuestionAnsweringOutput)\>
 
 #### Type declaration
 
@@ -338,14 +309,13 @@ ___
 
 ##### Parameters
 
-| Name | Type | Description |
-| :------ | :------ | :------ |
-| `args` | `Object` | - |
-| `args.inputs` | `Object` | - |
-| `args.inputs.context` | `string` | - |
-| `args.inputs.question` | `string` | - |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
-| `options?` | [`Options`](../interfaces/Options) | - |
+| Name | Type |
+| :------ | :------ |
+| `args` | `Object` |
+| `args.inputs` | `Object` |
+| `args.inputs.context` | `string` |
+| `args.inputs.question` | `string` |
+| `options?` | [`Options`](../interfaces/Options) |
 
 ##### Returns
 
@@ -359,7 +329,7 @@ ___
 
 ### request
 
-• **request**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  }, `options?`: [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  }) => `Promise`<`unknown`\>
+• **request**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `parameters?`: `Record`<`string`, `unknown`\>  }, `options?`: [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  }) => `Promise`<`unknown`\>
 
 #### Type declaration
 
@@ -369,7 +339,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `args` | { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } |
+| `args` | { `data`: `Blob` \| `ArrayBuffer` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `parameters?`: `Record`<`string`, `unknown`\>  } |
 | `options?` | [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  } |
 
 ##### Returns
@@ -384,7 +354,7 @@ ___
 
 ### sentenceSimilarity
 
-• **sentenceSimilarity**: (`args`: { `inputs`: `Record`<`string`, `unknown`\> \| `Record`<`string`, `unknown`\>[] ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`SentenceSimilarityOutput`](../modules#sentencesimilarityoutput)\>
+• **sentenceSimilarity**: (`args`: { `inputs`: `Record`<`string`, `unknown`\> \| `Record`<`string`, `unknown`\>[]  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`SentenceSimilarityOutput`](../modules#sentencesimilarityoutput)\>
 
 #### Type declaration
 
@@ -396,7 +366,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `Record`<`string`, `unknown`\> \| `Record`<`string`, `unknown`\>[] | The inputs vary based on the model. For example when using sentence-transformers/paraphrase-xlm-r-multilingual-v1 the inputs will have a `source_sentence` string and a `sentences` array of strings |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -411,7 +380,7 @@ ___
 
 ### streamingRequest
 
-• **streamingRequest**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  }, `options?`: [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  }) => `AsyncGenerator`<`unknown`, `any`, `unknown`\>
+• **streamingRequest**: (`args`: { `data`: `Blob` \| `ArrayBuffer` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `parameters?`: `Record`<`string`, `unknown`\>  }, `options?`: [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  }) => `AsyncGenerator`<`unknown`, `any`, `unknown`\>
 
 #### Type declaration
 
@@ -421,7 +390,7 @@ ___
 
 | Name | Type |
 | :------ | :------ |
-| `args` | { `data`: `Blob` \| `ArrayBuffer` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `model`: `string` ; `parameters?`: `Record`<`string`, `unknown`\>  } |
+| `args` | { `data`: `Blob` \| `ArrayBuffer` ; `parameters?`: `Record`<`string`, `unknown`\>  } \| { `inputs`: `unknown` ; `parameters?`: `Record`<`string`, `unknown`\>  } |
 | `options?` | [`Options`](../interfaces/Options) & { `includeCredentials?`: `boolean`  } |
 
 ##### Returns
@@ -436,7 +405,7 @@ ___
 
 ### summarization
 
-• **summarization**: (`args`: { `inputs`: `string` ; `model`: `string` ; `parameters?`: { `max_length?`: `number` ; `max_time?`: `number` ; `min_length?`: `number` ; `repetition_penalty?`: `number` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`SummarizationOutput`](../interfaces/SummarizationOutput)\>
+• **summarization**: (`args`: { `inputs`: `string` ; `parameters?`: { `max_length?`: `number` ; `max_time?`: `number` ; `min_length?`: `number` ; `repetition_penalty?`: `number` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`SummarizationOutput`](../interfaces/SummarizationOutput)\>
 
 #### Type declaration
 
@@ -448,7 +417,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be summarized |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.max_length?` | `number` | (Default: None). Integer to define the maximum length in tokens of the output summary. |
 | `args.parameters.max_time?` | `number` | (Default: None). Float (0-120.0). The amount of time in seconds that the query should take maximum. Network can cause some overhead so it will be a soft limit. |
@@ -471,7 +439,7 @@ ___
 
 ### tableQuestionAnswering
 
-• **tableQuestionAnswering**: (`args`: { `inputs`: { `query`: `string` ; `table`: `Record`<`string`, `string`[]\>  } ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TableQuestionAnsweringOutput`](../interfaces/TableQuestionAnsweringOutput)\>
+• **tableQuestionAnswering**: (`args`: { `inputs`: { `query`: `string` ; `table`: `Record`<`string`, `string`[]\>  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TableQuestionAnsweringOutput`](../interfaces/TableQuestionAnsweringOutput)\>
 
 #### Type declaration
 
@@ -485,7 +453,6 @@ ___
 | `args.inputs` | `Object` | - |
 | `args.inputs.query` | `string` | The query in plain text that you want to ask the table |
 | `args.inputs.table` | `Record`<`string`, `string`[]\> | A table of data represented as a dict of list where entries are headers and the lists are all the values, all lists must have the same size. |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -500,7 +467,7 @@ ___
 
 ### textClassification
 
-• **textClassification**: (`args`: { `inputs`: `string` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TextClassificationOutput`](../modules#textclassificationoutput)\>
+• **textClassification**: (`args`: { `inputs`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TextClassificationOutput`](../modules#textclassificationoutput)\>
 
 #### Type declaration
 
@@ -512,7 +479,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be classified |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -527,7 +493,7 @@ ___
 
 ### textGeneration
 
-• **textGeneration**: (`args`: { `inputs`: `string` ; `model`: `string` ; `parameters?`: { `do_sample?`: `boolean` ; `max_new_tokens?`: `number` ; `max_time?`: `number` ; `num_return_sequences?`: `number` ; `repetition_penalty?`: `number` ; `return_full_text?`: `boolean` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TextGenerationOutput`](../interfaces/TextGenerationOutput)\>
+• **textGeneration**: (`args`: { `inputs`: `string` ; `parameters?`: { `do_sample?`: `boolean` ; `max_new_tokens?`: `number` ; `max_time?`: `number` ; `num_return_sequences?`: `number` ; `repetition_penalty?`: `number` ; `return_full_text?`: `boolean` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TextGenerationOutput`](../interfaces/TextGenerationOutput)\>
 
 #### Type declaration
 
@@ -539,7 +505,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be generated from |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.do_sample?` | `boolean` | (Optional: True). Bool. Whether or not to use sampling, use greedy decoding otherwise. |
 | `args.parameters.max_new_tokens?` | `number` | (Default: None). Int (0-250). The amount of new tokens to be generated, this does not include the input length it is a estimate of the size of generated text you want. Each new tokens slows down the request, so look for balance between response times and length of text generated. |
@@ -564,7 +529,7 @@ ___
 
 ### textGenerationStream
 
-• **textGenerationStream**: (`args`: { `inputs`: `string` ; `model`: `string` ; `parameters?`: { `do_sample?`: `boolean` ; `max_new_tokens?`: `number` ; `max_time?`: `number` ; `num_return_sequences?`: `number` ; `repetition_penalty?`: `number` ; `return_full_text?`: `boolean` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `AsyncGenerator`<[`TextGenerationStreamOutput`](../interfaces/TextGenerationStreamOutput), `any`, `unknown`\>
+• **textGenerationStream**: (`args`: { `inputs`: `string` ; `parameters?`: { `do_sample?`: `boolean` ; `max_new_tokens?`: `number` ; `max_time?`: `number` ; `num_return_sequences?`: `number` ; `repetition_penalty?`: `number` ; `return_full_text?`: `boolean` ; `temperature?`: `number` ; `top_k?`: `number` ; `top_p?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `AsyncGenerator`<[`TextGenerationStreamOutput`](../interfaces/TextGenerationStreamOutput), `any`, `unknown`\>
 
 #### Type declaration
 
@@ -576,7 +541,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be generated from |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.do_sample?` | `boolean` | (Optional: True). Bool. Whether or not to use sampling, use greedy decoding otherwise. |
 | `args.parameters.max_new_tokens?` | `number` | (Default: None). Int (0-250). The amount of new tokens to be generated, this does not include the input length it is a estimate of the size of generated text you want. Each new tokens slows down the request, so look for balance between response times and length of text generated. |
@@ -601,7 +565,7 @@ ___
 
 ### textToImage
 
-• **textToImage**: (`args`: { `inputs`: `string` ; `model`: `string` ; `parameters?`: { `guidance_scale?`: `number` ; `height?`: `number` ; `negative_prompt?`: `string` ; `num_inference_steps?`: `number` ; `width?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<`Blob`\>
+• **textToImage**: (`args`: { `inputs`: `string` ; `parameters?`: { `guidance_scale?`: `number` ; `height?`: `number` ; `negative_prompt?`: `string` ; `num_inference_steps?`: `number` ; `width?`: `number`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<`Blob`\>
 
 #### Type declaration
 
@@ -613,7 +577,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | The text to generate an image from |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.guidance_scale?` | `number` | Guidance scale: Higher guidance scale encourages to generate images that are closely linked to the text `prompt`, usually at the expense of lower image quality. |
 | `args.parameters.height?` | `number` | The height in pixels of the generated image |
@@ -634,7 +597,7 @@ ___
 
 ### tokenClassification
 
-• **tokenClassification**: (`args`: { `inputs`: `string` ; `model`: `string` ; `parameters?`: { `aggregation_strategy?`: ``"none"`` \| ``"simple"`` \| ``"first"`` \| ``"average"`` \| ``"max"``  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TokenClassificationOutput`](../modules#tokenclassificationoutput)\>
+• **tokenClassification**: (`args`: { `inputs`: `string` ; `parameters?`: { `aggregation_strategy?`: ``"none"`` \| ``"simple"`` \| ``"first"`` \| ``"average"`` \| ``"max"``  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TokenClassificationOutput`](../modules#tokenclassificationoutput)\>
 
 #### Type declaration
 
@@ -646,7 +609,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be classified |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters?` | `Object` | - |
 | `args.parameters.aggregation_strategy?` | ``"none"`` \| ``"simple"`` \| ``"first"`` \| ``"average"`` \| ``"max"`` | (Default: simple). There are several aggregation strategies: none: Every token gets classified without further aggregation. simple: Entities are grouped according to the default schema (B-, I- tags get merged when the tag is similar). first: Same as the simple strategy except words cannot end up with different tags. Words will use the tag of the first token when there is ambiguity. average: Same as the simple strategy except words cannot end up with different tags. Scores are averaged across tokens and then the maximum label is applied. max: Same as the simple strategy except words cannot end up with different tags. Word entity will be the token with the maximum score. |
 | `options?` | [`Options`](../interfaces/Options) | - |
@@ -663,7 +625,7 @@ ___
 
 ### translation
 
-• **translation**: (`args`: { `inputs`: `string` ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TranslationOutput`](../interfaces/TranslationOutput)\>
+• **translation**: (`args`: { `inputs`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`TranslationOutput`](../interfaces/TranslationOutput)\>
 
 #### Type declaration
 
@@ -675,7 +637,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` | A string to be translated |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -690,7 +651,7 @@ ___
 
 ### visualQuestionAnswering
 
-• **visualQuestionAnswering**: (`args`: { `inputs`: { `image`: `Blob` ; `question`: `string`  } ; `model`: `string`  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`VisualQuestionAnsweringOutput`](../interfaces/VisualQuestionAnsweringOutput)\>
+• **visualQuestionAnswering**: (`args`: { `inputs`: { `image`: `Blob` ; `question`: `string`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`VisualQuestionAnsweringOutput`](../interfaces/VisualQuestionAnsweringOutput)\>
 
 #### Type declaration
 
@@ -704,7 +665,6 @@ ___
 | `args.inputs` | `Object` | - |
 | `args.inputs.image` | `Blob` | Raw image You can use native `File` in browsers, or `new Blob([buffer])` in node, or for a base64 image `new Blob([btoa(base64String)])`, or even `await (await fetch('...)).blob()` |
 | `args.inputs.question` | `string` | - |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `options?` | [`Options`](../interfaces/Options) | - |
 
 ##### Returns
@@ -719,7 +679,7 @@ ___
 
 ### zeroShotClassification
 
-• **zeroShotClassification**: (`args`: { `inputs`: `string` \| `string`[] ; `model`: `string` ; `parameters`: { `candidate_labels`: `string`[] ; `multi_label?`: `boolean`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ZeroShotClassificationOutput`](../modules#zeroshotclassificationoutput)\>
+• **zeroShotClassification**: (`args`: { `inputs`: `string` \| `string`[] ; `parameters`: { `candidate_labels`: `string`[] ; `multi_label?`: `boolean`  }  }, `options?`: [`Options`](../interfaces/Options)) => `Promise`<[`ZeroShotClassificationOutput`](../modules#zeroshotclassificationoutput)\>
 
 #### Type declaration
 
@@ -731,7 +691,6 @@ ___
 | :------ | :------ | :------ |
 | `args` | `Object` | - |
 | `args.inputs` | `string` \| `string`[] | a string or list of strings |
-| `args.model` | `string` | The model to use. Can be a full URL for HF inference endpoints. |
 | `args.parameters` | `Object` | - |
 | `args.parameters.candidate_labels` | `string`[] | a list of strings that are potential classes for inputs. (max 10 candidate_labels, for more, simply run multiple requests, results are going to be misleading if using too many candidate_labels anyway. If you want to keep the exact same, you can simply run multi_label=True and do the scaling on your end. |
 | `args.parameters.multi_label?` | `boolean` | (Default: false) Boolean that is set to True if classes can overlap |
@@ -744,25 +703,3 @@ ___
 #### Defined in
 
 [inference/src/tasks/nlp/zeroShotClassification.ts:34](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/tasks/nlp/zeroShotClassification.ts#L34)
-
-## Methods
-
-### endpoint
-
-▸ **endpoint**(`endpointUrl`): [`HfInferenceEndpoint`](HfInferenceEndpoint)
-
-Returns copy of HfInference tied to a specified endpoint.
-
-#### Parameters
-
-| Name | Type |
-| :------ | :------ |
-| `endpointUrl` | `string` |
-
-#### Returns
-
-[`HfInferenceEndpoint`](HfInferenceEndpoint)
-
-#### Defined in
-
-[inference/src/HfInference.ts:42](https://github.com/huggingface/huggingface.js/blob/main/packages/inference/src/HfInference.ts#L42)

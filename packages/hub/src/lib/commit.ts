@@ -1,4 +1,4 @@
-import { isFrontend } from "../../../shared/src/isFrontend";
+import { isFrontend } from "../utils/isFrontend";
 import { HUB_URL } from "../consts";
 import { HubApiError, createApiError, InvalidApiResponseFormatError } from "../error";
 import type {
